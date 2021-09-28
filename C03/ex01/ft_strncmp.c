@@ -1,41 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: osmith <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/13 16:34:13 by osmith            #+#    #+#             */
-/*   Updated: 2021/09/14 19:21:01 by osmith           ###   ########.fr       */
+/*   Created: 2021/09/11 11:48:07 by osmith            #+#    #+#             */
+/*   Updated: 2021/09/13 11:46:46 by osmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-
-void	ft_putchar(char c)
+int	ft_strncmp(char *s1, char *s2, unsigned int n)
 {
-	write(1, &c, 1);
-}
-
-void	ft_putnbr(int nb)
-{
-	if (nb == -2147483648)
-	{
-		write(1, "-2147483648", 11);
-		return ;
-		nb = 0;
-	}
-	if (nb < 0)
-	{
-		nb *= -1;
-		ft_putchar('-');
-	}
-	if (nb > 0)
-	{
-		if ((nb / 10) != 0)
-			ft_putnbr(nb / 10);
-		ft_putchar((nb % 10) + 48);
-	}
-	if (nb == 0)
-		ft_putchar('0');
+	if (n == 0)
+		return (0);
+	while (*s1 && *s2 && *s1 == *s2 && n > 1 && s1++ && s2++)
+		n--;
+	return (*s1 - *s2);
 }

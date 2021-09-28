@@ -1,41 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_strncpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: osmith <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/13 16:34:13 by osmith            #+#    #+#             */
-/*   Updated: 2021/09/14 19:21:01 by osmith           ###   ########.fr       */
+/*   Created: 2021/09/10 10:11:04 by osmith            #+#    #+#             */
+/*   Updated: 2021/09/10 12:21:36 by osmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-
-void	ft_putchar(char c)
+char	*ft_strncpy(char *dest, char *src, unsigned int n)
 {
-	write(1, &c, 1);
-}
+	unsigned int	i;
 
-void	ft_putnbr(int nb)
-{
-	if (nb == -2147483648)
+	i = 0;
+	while (src[i] != '\0' && i < n)
 	{
-		write(1, "-2147483648", 11);
-		return ;
-		nb = 0;
+		dest[i] = src[i];
+		i++;
 	}
-	if (nb < 0)
+	while (i < n)
 	{
-		nb *= -1;
-		ft_putchar('-');
+		dest[i] = '\0';
+		i++;
 	}
-	if (nb > 0)
-	{
-		if ((nb / 10) != 0)
-			ft_putnbr(nb / 10);
-		ft_putchar((nb % 10) + 48);
-	}
-	if (nb == 0)
-		ft_putchar('0');
+	return (dest);
 }

@@ -6,36 +6,34 @@
 /*   By: osmith <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 16:34:13 by osmith            #+#    #+#             */
-/*   Updated: 2021/09/14 19:21:01 by osmith           ###   ########.fr       */
+/*   Updated: 2021/09/14 19:20:14 by osmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-
-void	ft_putchar(char c)
+int	ft_atoi(char *str)
 {
-	write(1, &c, 1);
-}
+	int	num;
+	int	countneg;
+	int	i;
 
-void	ft_putnbr(int nb)
-{
-	if (nb == -2147483648)
+	i = 0;
+	countneg = 0;
+	num = 0;
+	while (str[i] == ' ' || str[i] == '\n' || str[i] == '\t' || str[i] == '\v'
+		|| str[i] == '\f' || str[i] == '\r')
+		i++;
+	while (*(str + i) == '+' || *(str + i) == '-')
 	{
-		write(1, "-2147483648", 11);
-		return ;
-		nb = 0;
+		if (*(str + i) == '-')
+			countneg++;
+		i++;
 	}
-	if (nb < 0)
+	while (*(str + i) >= '0' && *(str + i) <= '9')
 	{
-		nb *= -1;
-		ft_putchar('-');
+		num = num * 10 + (*(str + i) - 48);
+		i++;
 	}
-	if (nb > 0)
-	{
-		if ((nb / 10) != 0)
-			ft_putnbr(nb / 10);
-		ft_putchar((nb % 10) + 48);
-	}
-	if (nb == 0)
-		ft_putchar('0');
+	if (countneg % 2)
+		num *= -1;
+	return (num);
 }
